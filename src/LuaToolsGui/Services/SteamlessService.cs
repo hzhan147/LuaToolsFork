@@ -16,8 +16,8 @@ public record SteamlessResult(int Patched, int Unchanged, int Total, string? Err
 /// Runs <c>Steamless.CLI.exe</c> (atom0s/Steamless) to strip SteamStub DRM from a game's executable(s).
 /// The tool is downloaded once from GitHub (via <see cref="GithubProxy"/>, so it works in blocked regions)
 /// and cached under %AppData%\LuaToolsGui\steamless. The target exe(s) are resolved precisely from Steam's
-/// own launch config (<see cref="SteamDepotInfo"/> → config.launch); if that's unavailable we fall back to a
-/// filtered recursive scan of the install folder. Each patched exe is backed up to <c>&lt;exe&gt;.bak</c>
+/// own launch config (<see cref="SteamDepotInfo"/> → config.launch), supplemented by a filtered recursive
+/// scan so bootstrap launchers don't hide the game executable. Each patched exe is backed up to <c>&lt;exe&gt;.bak</c>
 /// first. Steamless silently no-ops on exes without DRM, so over-selection is harmless.
 /// </summary>
 public class SteamlessService(GithubProxy gh, SteamLibraryService library, SteamDepotInfo depots, CacheService cache)
@@ -125,13 +125,18 @@ public class SteamlessService(GithubProxy gh, SteamLibraryService library, Steam
         if (installDir is null)
             return new SteamlessResult(0, 0, 0, "no-install");
 
-        string? cli = await EnsureToolAsync(progress, ct);
-        if (cli is null)
-            return new SteamlessResult(0, 0, 0, "tool");
-
         var exes = await ResolveExesAsync(appId, installDir, ct);
         if (exes.Count == 0)
             return new SteamlessResult(0, 0, 0, "no-exe");
+
+        // DRM-free launchers (and already unpacked games) need no work and aren't failed patches.
+        exes = exes.Where(MayHaveSteamStub).ToList();
+        if (exes.Count == 0)
+            return new SteamlessResult(0, 0, 0, null);
+
+        string? cli = await EnsureToolAsync(progress, ct);
+        if (cli is null)
+            return new SteamlessResult(0, 0, 0, "tool");
 
         int patched = 0, unchanged = 0;
         foreach (string exe in exes)
@@ -166,30 +171,68 @@ public class SteamlessService(GithubProxy gh, SteamLibraryService library, Steam
         return new SteamlessResult(patched, unchanged, exes.Count, null);
     }
 
-    /// <summary>The exe(s) to patch: precise from Steam's launch config, else a filtered folder scan.</summary>
+    /// <summary>The exe(s) to patch: Steam's launch config plus a filtered folder scan.</summary>
     private async Task<IReadOnlyList<string>> ResolveExesAsync(long appId, string installDir, CancellationToken ct)
     {
-        // Primary: exact executables Steam launches (config.launch), resolved to existing files on disk.
         var info = await depots.GetAsync(appId, ct);
-        if (info is { LaunchExes.Count: > 0 })
-        {
-            var resolved = info.LaunchExes
-                .Select(rel => Path.Combine(installDir, rel))
-                .Where(File.Exists)
-                .Distinct(StringComparer.OrdinalIgnoreCase)
-                .ToList();
-            if (resolved.Count > 0) return resolved;
-        }
+        return ResolveExes(installDir, info?.LaunchExes ?? []);
+    }
 
-        // Fallback: scan every .exe, minus redists/launchers/etc. (game manifests sometimes omit launch).
+    /// <summary>Test seam: resolve local candidates without fetching Steam's launch config.</summary>
+    internal static IReadOnlyList<string> ResolveExes(string installDir, IReadOnlyList<string> launchExes)
+    {
+        // Keep configured launch targets first, even if their names match a scan exclusion.
+        var resolved = launchExes
+            .Select(rel => Path.GetFullPath(Path.Combine(installDir, rel)))
+            .Where(File.Exists)
+            .ToList();
+
+        // A configured target can be a DRM-free bootstrap; also inspect the nested game executables.
         try
         {
-            return Directory.EnumerateFiles(installDir, "*.exe", SearchOption.AllDirectories)
+            resolved.AddRange(Directory.EnumerateFiles(installDir, "*.exe", SearchOption.AllDirectories)
+                .Where(p => !p.EndsWith(".unpacked.exe", StringComparison.OrdinalIgnoreCase))
                 .Where(p => !SkipPatterns.Any(s => Path.GetFileName(p).Contains(s, StringComparison.OrdinalIgnoreCase)))
-                .Distinct(StringComparer.OrdinalIgnoreCase)
-                .ToList();
+                .Select(Path.GetFullPath));
         }
-        catch { return []; }
+        catch { /* keep known launch targets if the folder scan fails */ }
+
+        return resolved.Distinct(StringComparer.OrdinalIgnoreCase).ToList();
+    }
+
+    /// <summary>All supported SteamStub variants have a .bind section; inspect only the PE headers.</summary>
+    internal static bool MayHaveSteamStub(string path)
+    {
+        try
+        {
+            using var stream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            using var reader = new BinaryReader(stream);
+            if (stream.Length < 64 || reader.ReadUInt16() != 0x5A4D) return false;
+
+            stream.Position = 0x3C;
+            uint peOffset = reader.ReadUInt32();
+            if (peOffset < 64 || peOffset > stream.Length - 24) return false;
+            stream.Position = peOffset;
+            if (reader.ReadUInt32() != 0x00004550) return false;
+
+            reader.ReadUInt16(); // machine
+            ushort sections = reader.ReadUInt16();
+            stream.Position = peOffset + 20L;
+            ushort optionalSize = reader.ReadUInt16();
+            long sectionTable = peOffset + 24L + optionalSize;
+            if (sectionTable + sections * 40L > stream.Length) return false;
+
+            stream.Position = sectionTable;
+            for (int i = 0; i < sections; i++)
+            {
+                string name = System.Text.Encoding.ASCII.GetString(reader.ReadBytes(8)).TrimEnd('\0');
+                if (string.Equals(name, ".bind", StringComparison.OrdinalIgnoreCase)) return true;
+                stream.Position += 32;
+            }
+            return false;
+        }
+        catch (IOException) { return true; } // let processing report unreadable/locked candidates as before
+        catch (UnauthorizedAccessException) { return true; }
     }
 
     private static async Task RunCliAsync(string cliPath, string exePath, CancellationToken ct)
