@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
+using System.Reflection.PortableExecutable;
 using System.Text.Json;
 using LuaToolsGui.Models;
 
@@ -206,32 +207,13 @@ public class SteamlessService(GithubProxy gh, SteamLibraryService library, Steam
         try
         {
             using var stream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-            using var reader = new BinaryReader(stream);
-            if (stream.Length < 64 || reader.ReadUInt16() != 0x5A4D) return false;
-
-            stream.Position = 0x3C;
-            uint peOffset = reader.ReadUInt32();
-            if (peOffset < 64 || peOffset > stream.Length - 24) return false;
-            stream.Position = peOffset;
-            if (reader.ReadUInt32() != 0x00004550) return false;
-
-            reader.ReadUInt16(); // machine
-            ushort sections = reader.ReadUInt16();
-            stream.Position = peOffset + 20L;
-            ushort optionalSize = reader.ReadUInt16();
-            long sectionTable = peOffset + 24L + optionalSize;
-            if (sectionTable + sections * 40L > stream.Length) return false;
-
-            stream.Position = sectionTable;
-            for (int i = 0; i < sections; i++)
-            {
-                string name = System.Text.Encoding.ASCII.GetString(reader.ReadBytes(8)).TrimEnd('\0');
-                if (string.Equals(name, ".bind", StringComparison.OrdinalIgnoreCase)) return true;
-                stream.Position += 32;
-            }
-            return false;
+            using var pe = new PEReader(stream);
+            return pe.PEHeaders.PEHeader is not null && pe.PEHeaders.SectionHeaders.Any(section =>
+                string.Equals(section.Name, ".bind", StringComparison.OrdinalIgnoreCase));
         }
-        catch (IOException) { return true; } // let processing report unreadable/locked candidates as before
+        catch (BadImageFormatException) { return false; } // not a valid executable
+        // Keep unreadable candidates so processing reports failures instead of silently skipping them.
+        catch (IOException) { return true; }
         catch (UnauthorizedAccessException) { return true; }
     }
 
