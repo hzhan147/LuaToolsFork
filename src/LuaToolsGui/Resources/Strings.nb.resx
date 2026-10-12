@@ -624,4 +624,8 @@ Avbryt - fortsett nedlastingen</value></data>
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>{0} er endret siden denne fiksen ble brukt, så gjenoppretting ville overskrive de endringene. Hvis du har brukt en annen fiks oppå, tilbakestill den først. {1} fil(er) berørt.</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>Rettelse delvis angret</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>{0} fil(er) kunne ikke gjenopprettes. Lukk spillet og prøv igjen.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Lagre gjenopprettingskopier, gjenopprett originalene og fjern filer lagt til av denne rettelsen. Kopiene beholdes til du sletter dem.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Sikkerhetskopier og tving tilbakeføring</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Gjenopprettingskopier er lagret i {0}. Slett dem manuelt når de ikke lenger trengs.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>Sikkerhetskopiering for gjenoppretting mislyktes. Ingen filer ble tilbakeført. {0}</value></data>
 </root>

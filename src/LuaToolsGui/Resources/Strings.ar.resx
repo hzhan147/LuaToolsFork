@@ -650,4 +650,8 @@
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>تغيّر {0} منذ تطبيق هذا الإصلاح، لذا فإن استعادته ستستبدل تلك التغييرات. إذا طبّقت إصلاحًا آخر فوقه، فتراجع عنه أولاً. الملفات المتأثرة: {1}.</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>تم التراجع عن الإصلاح جزئيًا</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>تعذّرت استعادة {0} من الملفات. أغلق اللعبة وحاول مرة أخرى.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>احفظ نسخ الاسترداد، ثم استعد الملفات الأصلية واحذف الملفات التي أضافها هذا الإصلاح. تبقى نسخ الاسترداد حتى تحذفها.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>نسخ احتياطي وتراجع إجباري</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>حُفظت نسخ الاسترداد في {0}. احذفها يدويًا عندما لا تعود بحاجة إليها.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>فشل النسخ الاحتياطي للاسترداد. لم يتم التراجع عن أي ملفات. {0}</value></data>
 </root>

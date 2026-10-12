@@ -624,4 +624,8 @@ Anuluj - kontynuuj pobieranie</value></data>
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>Plik {0} zmienił się od zastosowania tej poprawki, więc przywrócenie nadpisałoby te zmiany. Jeśli zastosowano na wierzchu inną poprawkę, cofnij najpierw ją. Dotyczy {1} plik(ów).</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>Poprawka cofnięta częściowo</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>Nie udało się przywrócić {0} plików. Zamknij grę i spróbuj ponownie.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Zapisz kopie odzyskiwania, przywróć oryginały i usuń pliki dodane przez tę poprawkę. Kopie pozostaną do czasu ich usunięcia.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Utwórz kopie i wymuś cofnięcie</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Kopie odzyskiwania zapisano w {0}. Usuń je ręcznie, gdy nie będą już potrzebne.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>Tworzenie kopii odzyskiwania nie powiodło się. Nie cofnięto żadnych plików. {0}</value></data>
 </root>

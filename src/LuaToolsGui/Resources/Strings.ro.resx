@@ -624,4 +624,8 @@ Anulare - continuă descărcarea</value></data>
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>{0} s-a modificat de la aplicarea acestui fix, așa că restaurarea ar suprascrie acele modificări. Dacă ai aplicat alt fix peste, anulează-l mai întâi pe acela. {1} fișier(e) afectate.</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>Reparație anulată parțial</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>{0} fișier(e) nu au putut fi restaurate. Închide jocul și încearcă din nou.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Salvați copii de recuperare, apoi restaurați originalele și eliminați fișierele adăugate de această remediere. Copiile rămân până le ștergeți.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Copiere de siguranță și revenire forțată</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Copiile de recuperare au fost salvate în {0}. Ștergeți-le manual când nu mai sunt necesare.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>Copierea pentru recuperare a eșuat. Niciun fișier nu a fost restaurat. {0}</value></data>
 </root>

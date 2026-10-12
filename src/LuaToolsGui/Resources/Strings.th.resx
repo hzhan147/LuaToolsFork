@@ -624,4 +624,8 @@
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>{0} มีการเปลี่ยนแปลงหลังจากใช้แพตช์นี้ การกู้คืนจะเขียนทับการเปลี่ยนแปลงนั้น หากคุณใช้แพตช์อื่นทับไว้ ให้ย้อนกลับแพตช์นั้นก่อน มีไฟล์ที่ได้รับผลกระทบ {1} ไฟล์</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>ย้อนกลับตัวแก้ไขได้บางส่วน</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>กู้คืนไฟล์ {0} รายการไม่สำเร็จ กรุณาปิดเกมแล้วลองใหม่</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>บันทึกสำเนาสำหรับกู้คืน จากนั้นคืนค่าไฟล์ต้นฉบับและลบไฟล์ที่การแก้ไขนี้เพิ่มเข้ามา สำเนาจะเก็บไว้จนกว่าคุณจะลบเอง</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>สำรองข้อมูลและบังคับย้อนกลับ</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>บันทึกสำเนาสำหรับกู้คืนไว้ที่ {0} แล้ว โปรดลบเองเมื่อไม่ต้องการใช้อีก</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>สำรองข้อมูลสำหรับกู้คืนไม่สำเร็จ ยังไม่ได้ย้อนกลับไฟล์ใด ๆ {0}</value></data>
 </root>

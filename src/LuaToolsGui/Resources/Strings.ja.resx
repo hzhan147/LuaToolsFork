@@ -624,4 +624,8 @@ Steam\config\stplug-in から .lua ファイルを削除します。</value></da
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>この修正の適用後に {0} が変更されているため、復元するとその変更が上書きされます。別の修正を上に適用した場合は、先にそちらを元に戻してください。対象は {1} 個のファイルです。</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>修正は一部だけ元に戻りました</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>{0} 個のファイルを復元できませんでした。ゲームを閉じてやり直してください。</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>復旧用コピーを保存してから、元のファイルを復元し、この修正で追加されたファイルを削除します。復旧用コピーは手動で削除するまで残ります。</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>バックアップして強制的に元に戻す</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>復旧用コピーを {0} に保存しました。不要になったら手動で削除してください。</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>復旧用バックアップに失敗しました。ファイルは元に戻されていません。{0}</value></data>
 </root>

@@ -624,4 +624,8 @@
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>自套用此修復以來，{0} 已被變更，還原會覆寫這些變更。如果你在其上套用了另一個修復，請先還原那一個。共影響 {1} 個檔案。</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>修復部分還原</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>有 {0} 個檔案無法復原。請關閉遊戲後重試。</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>先儲存復原副本，再還原原始檔案並刪除此修正新增的檔案。復原副本會一直保留，直到你手動刪除。</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>備份並強制還原</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>復原副本已儲存至 {0}。不再需要時請手動刪除。</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>復原備份失敗，未還原任何檔案。{0}</value></data>
 </root>

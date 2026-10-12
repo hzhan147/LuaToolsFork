@@ -28,7 +28,10 @@ public sealed class DownloadAbortedException(string message, bool isCancellation
 
 /// <summary>Outcome of a job's install phase.</summary>
 /// <param name="Message">User-facing result text, already localized by the factory.</param>
-public sealed record JobResult(bool Ok, string? Message, string? InstalledPath = null);
+public sealed record JobResult(bool Ok, string? Message, string? InstalledPath = null)
+{
+    public IReadOnlyList<string> RevertConflicts { get; init; } = [];
+}
 
 /// <summary>
 /// One unit of work handed to <see cref="DownloadQueue"/>.

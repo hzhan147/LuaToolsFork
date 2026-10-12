@@ -624,4 +624,8 @@ Avbryt - fortsätt hämta</value></data>
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>{0} har ändrats sedan den här fixen tillämpades, så en återställning skulle skriva över de ändringarna. Om du tillämpat en annan fix ovanpå, återställ den först. {1} fil(er) påverkas.</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>Korrigering delvis ångrad</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>{0} fil(er) kunde inte återställas. Stäng spelet och försök igen.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Spara återställningskopior, återställ originalen och ta bort filer som lagts till av denna fix. Kopiorna behålls tills du tar bort dem.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Säkerhetskopiera och tvinga återställning</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Återställningskopior sparade i {0}. Ta bort dem manuellt när de inte längre behövs.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>Säkerhetskopiering för återställning misslyckades. Inga filer återställdes. {0}</value></data>
 </root>

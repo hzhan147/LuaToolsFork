@@ -624,4 +624,8 @@ Annuller - fortsæt download</value></data>
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>{0} er ændret, siden denne rettelse blev anvendt, så en gendannelse ville overskrive de ændringer. Hvis du har anvendt en anden rettelse ovenpå, så fortryd den først. {1} fil(er) berørt.</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>Rettelse delvist fortrudt</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>{0} fil(er) kunne ikke gendannes. Luk spillet og prøv igen.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Gem gendannelseskopier, gendan derefter originalerne, og fjern filer tilføjet af denne rettelse. Kopierne beholdes, indtil du sletter dem.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Sikkerhedskopiér og gennemtving tilbageførsel</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Gendannelseskopier er gemt i {0}. Slet dem manuelt, når de ikke længere er nødvendige.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>Sikkerhedskopiering til gendannelse mislykkedes. Ingen filer blev tilbageført. {0}</value></data>
 </root>

@@ -624,4 +624,8 @@ Hayır - durdur ama dosyaları koru
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>Bu düzeltme uygulandıktan sonra {0} değişti; geri yüklemek bu değişikliklerin üzerine yazar. Üstüne başka bir düzeltme uyguladıysanız önce onu geri alın. {1} dosya etkilendi.</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>Düzeltme kısmen geri alındı</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>{0} dosya geri yüklenemedi. Oyunu kapatıp tekrar deneyin.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Kurtarma kopyalarını kaydedin, ardından asılları geri yükleyin ve bu düzeltmenin eklediği dosyaları kaldırın. Kopyalar siz silene kadar saklanır.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Yedekle ve zorla geri al</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Kurtarma kopyaları {0} konumuna kaydedildi. Artık gerekmediğinde elle silin.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>Kurtarma yedeklemesi başarısız oldu. Hiçbir dosya geri alınmadı. {0}</value></data>
 </root>

@@ -624,4 +624,8 @@ Cancelar: seguir descargando</value></data>
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>{0} cambió desde que se aplicó este fix, así que restaurarlo sobrescribiría esos cambios. Si aplicaste otro fix encima, revierte ese primero. {1} archivo(s) afectado(s).</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>Parche revertido parcialmente</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>No se pudieron restaurar {0} archivo(s). Cerrá el juego y probá de nuevo.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Guardar copias de recuperación, restaurar los originales y eliminar los archivos agregados por esta corrección. Las copias se conservan hasta que las borres.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Respaldar y forzar reversión</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Copias de recuperación guardadas en {0}. Elimínalas manualmente cuando ya no las necesites.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>Falló el respaldo de recuperación. No se revirtió ningún archivo. {0}</value></data>
 </root>

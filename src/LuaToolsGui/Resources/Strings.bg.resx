@@ -624,4 +624,8 @@
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>{0} е променен, откакто беше приложена тази поправка, така че възстановяването ще презапише тези промени. Ако сте приложили друга поправка отгоре, първо върнете нея. Засегнати са {1} файла.</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>Корекцията е върната частично</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>{0} файл(а) не можаха да бъдат възстановени. Затворете играта и опитайте отново.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Запазете копия за възстановяване, след което възстановете оригиналите и премахнете файловете, добавени от тази поправка. Копията остават, докато ги изтриете.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Архивиране и принудително връщане</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Копията за възстановяване са записани в {0}. Изтрийте ги ръчно, когато вече не са нужни.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>Архивирането за възстановяване е неуспешно. Нито един файл не е върнат. {0}</value></data>
 </root>

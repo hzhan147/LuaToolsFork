@@ -624,4 +624,8 @@ Annulla - continua a scaricare</value></data>
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>{0} è cambiato da quando questo fix è stato applicato, quindi ripristinarlo sovrascriverebbe quelle modifiche. Se hai applicato un altro fix sopra, ripristina prima quello. {1} file interessati.</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>Fix annullata parzialmente</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>Impossibile ripristinare {0} file. Chiudi il gioco e riprova.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Salva copie di recupero, poi ripristina gli originali e rimuovi i file aggiunti da questa correzione. Le copie rimangono finché non le elimini.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Salva e forza il ripristino</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Copie di recupero salvate in {0}. Eliminale manualmente quando non servono più.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>Backup di recupero non riuscito. Nessun file è stato ripristinato. {0}</value></data>
 </root>
