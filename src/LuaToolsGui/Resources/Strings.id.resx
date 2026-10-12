@@ -624,4 +624,8 @@ Batal - lanjutkan mengunduh</value></data>
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>{0} telah berubah sejak fix ini diterapkan, jadi memulihkannya akan menimpa perubahan tersebut. Jika Anda menerapkan fix lain di atasnya, kembalikan yang itu dulu. {1} berkas terpengaruh.</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>Perbaikan dikembalikan sebagian</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>{0} berkas tidak dapat dipulihkan. Tutup game lalu coba lagi.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Simpan salinan pemulihan, lalu pulihkan berkas asli dan hapus berkas yang ditambahkan oleh perbaikan ini. Salinan tetap disimpan sampai Anda menghapusnya.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Cadangkan dan paksa pembatalan</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Salinan pemulihan disimpan di {0}. Hapus secara manual jika tidak diperlukan lagi.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>Pencadangan pemulihan gagal. Tidak ada berkas yang dikembalikan. {0}</value></data>
 </root>

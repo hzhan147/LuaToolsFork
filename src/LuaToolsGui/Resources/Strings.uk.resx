@@ -624,4 +624,8 @@
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>Файл {0} змінився після застосування цього фікса, тож відновлення перезапише ці зміни. Якщо згори застосовано інший фікс, спершу скасуйте його. Порушено файлів: {1}.</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>Виправлення відкочено частково</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>Не вдалося відновити файлів: {0}. Закрийте гру та спробуйте ще раз.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Збережіть копії для відновлення, потім поверніть оригінали й видаліть файли, додані цим виправленням. Копії залишаться, доки ви їх не видалите.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Зберегти копії та примусово скасувати</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Копії для відновлення збережено в {0}. Видаліть їх вручну, коли вони більше не потрібні.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>Не вдалося створити копії для відновлення. Жоден файл не було відновлено. {0}</value></data>
 </root>

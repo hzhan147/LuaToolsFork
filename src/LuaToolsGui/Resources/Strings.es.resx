@@ -624,4 +624,8 @@ Cancelar: seguir descargando</value></data>
   <data name="Depot_Err_NoKeyFor" xml:space="preserve"><value>No hay clave de descifrado en el Lua para el depot {0}.</value></data>
   <data name="Builds_Select_SharedHint" xml:space="preserve"><value>Runtime compartido: normalmente ya está instalado. Marca para descargarlo igualmente.</value></data>
   <data name="Downloads_ClearHistory_Confirm" xml:space="preserve"><value>¿Quitar las {0} entradas del historial de descargas? Los archivos descargados no se ven afectados.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Guardar copias de recuperación, restaurar los originales y eliminar los archivos añadidos por esta corrección. Las copias se conservan hasta que las borres.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Crear copia y forzar reversión</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Copias de recuperación guardadas en {0}. Bórralas manualmente cuando ya no las necesites.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>No se pudo crear la copia de recuperación. No se revirtió ningún archivo. {0}</value></data>
 </root>

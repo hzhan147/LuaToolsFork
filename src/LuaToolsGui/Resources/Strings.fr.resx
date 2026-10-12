@@ -624,4 +624,8 @@ Annuler - continuer le téléchargement</value></data>
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>{0} a changé depuis l'application de ce correctif ; le restaurer écraserait ces modifications. Si vous avez appliqué un autre correctif par-dessus, annulez-le d'abord. {1} fichier(s) concerné(s).</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>Correctif partiellement annulé</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>Impossible de restaurer {0} fichier(s). Fermez le jeu et réessayez.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Enregistrer des copies de récupération, puis restaurer les originaux et supprimer les fichiers ajoutés par ce correctif. Les copies sont conservées jusqu’à leur suppression manuelle.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Sauvegarder et forcer l’annulation</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Copies de récupération enregistrées dans {0}. Supprimez-les manuellement lorsqu’elles ne sont plus nécessaires.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>La sauvegarde de récupération a échoué. Aucun fichier n’a été restauré. {0}</value></data>
 </root>

@@ -624,4 +624,8 @@ Mégse - letöltés folytatása</value></data>
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>A(z) {0} megváltozott a javítás alkalmazása óta, ezért a visszaállítás felülírná ezeket a módosításokat. Ha másik javítást is alkalmaztál rá, előbb azt vond vissza. {1} fájl érintett.</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>A javítás részben lett visszavonva</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>{0} fájlt nem sikerült visszaállítani. Zárd be a játékot, és próbáld újra.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Mentse el a helyreállítási másolatokat, majd állítsa vissza az eredetiket és távolítsa el a javítás által hozzáadott fájlokat. A másolatok a törlésükig megmaradnak.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Biztonsági mentés és kényszerített visszavonás</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>A helyreállítási másolatok itt találhatók: {0}. Törölje őket kézzel, ha már nincs rájuk szükség.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>A helyreállítási mentés sikertelen. Egyetlen fájl sem lett visszaállítva. {0}</value></data>
 </root>

@@ -591,7 +591,7 @@
                         Background="#99000000"
                         Visibility="{Binding IsConfirmingRevert, Converter={StaticResource BoolToVis}}">
                         <Border
-                            MaxWidth="360"
+                            MaxWidth="460"
                             Margin="16"
                             Padding="20"
                             HorizontalAlignment="Center"
@@ -606,12 +606,13 @@
                                     FontWeight="Bold"
                                     Text="{Binding ConfirmRevertTitle}"
                                     TextWrapping="Wrap" />
-                                <TextBlock
-                                    Margin="0,8,0,0"
-                                    FontSize="12.5"
-                                    Foreground="#9ca3af"
-                                    Text="{Binding ConfirmRevertBody}"
-                                    TextWrapping="Wrap" />
+                                <ScrollViewer Margin="0,8,0,0" MaxHeight="280" VerticalScrollBarVisibility="Auto">
+                                    <TextBlock
+                                        FontSize="12.5"
+                                        Foreground="#9ca3af"
+                                        Text="{Binding ConfirmRevertBody}"
+                                        TextWrapping="Wrap" />
+                                </ScrollViewer>
                                 <StackPanel
                                     Margin="0,18,0,0"
                                     HorizontalAlignment="Right"
@@ -620,13 +621,14 @@
                                         Margin="0,0,10,0"
                                         Padding="14,7"
                                         Command="{Binding CancelRevertConfirmCommand}"
+                                        IsDefault="True"
                                         Content="{x:Static res:Strings.Fixes_Revert_Cancel}" />
                                     <ui:Button
                                         Padding="14,7"
-                                        Appearance="Primary"
                                         Command="{Binding ConfirmRevertCommand}"
-                                        Content="{x:Static res:Strings.Fixes_Revert}"
-                                        Icon="{ui:SymbolIcon ArrowClockwise24}" />
+                                        Icon="{ui:SymbolIcon ArrowClockwise24}">
+                                        <TextBlock MaxWidth="220" Text="{Binding ConfirmRevertButtonLabel}" TextWrapping="Wrap" />
+                                    </ui:Button>
                                 </StackPanel>
                             </StackPanel>
                         </Border>

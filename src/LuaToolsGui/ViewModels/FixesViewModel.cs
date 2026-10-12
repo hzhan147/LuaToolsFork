@@ -428,8 +428,10 @@ public partial class FixesViewModel : PagedListViewModel<FixGameCardVm>
     [RelayCommand]
     private void RevertFix(FixItemVm fix)
     {
-        if (SelectedGame is not { } game) return;
+        if (IsReverting || SelectedGame is not { } game) return;
         _pendingRevert = (fix, game);
+        _forceRevert = false;
+        ConfirmRevertButtonLabel = Resources.Strings.Fixes_Revert;
         ConfirmRevertTitle = string.Format(Resources.Strings.Fixes_Revert_Confirm_Title, game.Name);
         ConfirmRevertBody = string.Format(Resources.Strings.Fixes_Revert_Confirm_Body, game.Name);
         IsConfirmingRevert = true;
@@ -440,6 +442,7 @@ public partial class FixesViewModel : PagedListViewModel<FixGameCardVm>
     {
         IsConfirmingRevert = false;
         _pendingRevert = null;
+        _forceRevert = false;
     }
 
     [RelayCommand]
@@ -447,11 +450,29 @@ public partial class FixesViewModel : PagedListViewModel<FixGameCardVm>
     {
         IsConfirmingRevert = false;
         var pending = _pendingRevert;
+        bool force = _forceRevert;
+        _forceRevert = false;
         _pendingRevert = null;
         if (pending is not (var fix, var game)) return;
         if (!long.TryParse(game.AppId, out long appId)) return;
 
-        var result = await Task.Run(() => jobs.RevertDenuvoFix(appId, fix.Id, game.Name));
+        IsReverting = true;
+        JobResult result;
+        try { result = await Task.Run(() => jobs.RevertDenuvoFix(appId, fix.Id, game.Name, force)); }
+        finally { IsReverting = false; }
+
+        if (!force && result.RevertConflicts.Count > 0)
+        {
+            _pendingRevert = (fix, game);
+            _forceRevert = true;
+            ConfirmRevertTitle = Resources.Strings.Fixes_Revert_Conflict;
+            string files = string.Join(Environment.NewLine, result.RevertConflicts.Take(3));
+            if (result.RevertConflicts.Count > 3) files += Environment.NewLine + "…";
+            ConfirmRevertBody = result.Message + Environment.NewLine + Environment.NewLine + files +
+                Environment.NewLine + Environment.NewLine + Resources.Strings.Fixes_ForceRevert_Body;
+            ConfirmRevertButtonLabel = Resources.Strings.Fixes_ForceRevert_Button;
+            IsConfirmingRevert = true;
+        }
 
         // RevertDenuvoFix owns every revert toast (done / partial / conflict / not-found / no-record).
         // Showing another one here meant a failed revert fired two toasts for one action.
@@ -459,6 +480,9 @@ public partial class FixesViewModel : PagedListViewModel<FixGameCardVm>
     }
 
     private (FixItemVm Fix, FixGameCardVm Game)? _pendingRevert;
+    private bool _forceRevert;
+    [ObservableProperty] private bool _isReverting;
+    [ObservableProperty] private string _confirmRevertButtonLabel = "";
     [ObservableProperty] private bool _isConfirmingRevert;
     [ObservableProperty] private string _confirmRevertTitle = "";
     [ObservableProperty] private string _confirmRevertBody = "";

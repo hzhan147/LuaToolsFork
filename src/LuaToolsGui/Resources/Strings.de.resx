@@ -624,4 +624,8 @@ Abbrechen - weiter herunterladen</value></data>
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>{0} wurde seit dem Anwenden dieses Fixes geändert; eine Wiederherstellung würde diese Änderungen überschreiben. Falls du einen weiteren Fix darüber angewendet hast, setze zuerst diesen zurück. {1} Datei(en) betroffen.</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>Fix teilweise rückgängig gemacht</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>{0} Datei(en) konnten nicht wiederhergestellt werden. Schließe das Spiel und versuche es erneut.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Wiederherstellungskopien speichern, dann Originale wiederherstellen und durch diesen Fix hinzugefügte Dateien entfernen. Die Kopien bleiben erhalten, bis du sie löschst.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Sichern und Rückgängigmachen erzwingen</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Wiederherstellungskopien wurden unter {0} gespeichert. Lösche sie manuell, wenn du sie nicht mehr benötigst.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>Die Wiederherstellungssicherung ist fehlgeschlagen. Keine Dateien wurden zurückgesetzt. {0}</value></data>
 </root>

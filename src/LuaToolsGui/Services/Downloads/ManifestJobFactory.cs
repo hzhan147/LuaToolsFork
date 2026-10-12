@@ -759,7 +759,7 @@ public class ManifestJobFactory(
     /// different fix key that we would not overwrite. So neither side is trusted; both go through here.
     /// Same containment check as <c>DepotDownloaderService.TryDeleteCreatedFiles</c>.
     /// </remarks>
-    private static string? ResolveInside(string root, string relative)
+    internal static string? ResolveInside(string root, string relative)
     {
         try
         {
@@ -794,7 +794,7 @@ public class ManifestJobFactory(
     /// the view model used to show one on any failure, so every partial revert (the common case, from a
     /// locked file while the game is running) fired two toasts for a single action.
     /// </remarks>
-    public JobResult RevertDenuvoFix(long appId, string fixId, string gameName)
+    public JobResult RevertDenuvoFix(long appId, string fixId, string gameName, bool force = false)
     {
         try
         {
@@ -815,7 +815,20 @@ public class ManifestJobFactory(
                 return new JobResult(false, err);
             }
 
+            FixRevertRecovery? recovery = null;
+            if (force)
+            {
+                try { recovery = FixRevertRecovery.Prepare(installDir, fixId, record); }
+                catch (Exception ex)
+                {
+                    string err = string.Format(Resources.Strings.Fixes_ForceRevert_BackupFailed, ex.Message);
+                    toast.Show(Resources.Strings.Fixes_Revert_Failed, err, error: true);
+                    return new JobResult(false, err);
+                }
+            }
+
             int restored = 0, deleted = 0, errors = 0, conflicts = 0;
+            var conflictPaths = new List<string>();
             string? conflictFile = null;
 
             foreach (var entry in record.Files)
@@ -826,6 +839,7 @@ public class ManifestJobFactory(
 
                 try
                 {
+                    if (recovery is not null && !recovery.MatchesCurrent(dest)) { errors++; continue; }
                     if (entry.Action == "modified" && entry.BackupPath is { } bakRel)
                     {
                         if (ResolveInside(Path.Combine(installDir, FixRecordDir), bakRel)
@@ -841,6 +855,8 @@ public class ManifestJobFactory(
                             continue;
                         }
 
+                        if (force && !FileHash.Matches(bakAbs, entry.HashBefore)) { errors++; continue; }
+
                         // Only put the original back if the file on disk is still the one THIS fix wrote.
                         // Two hashes count as ours: HashAfter (untouched since we applied) and HashBefore
                         // (an earlier attempt already restored it, so a retry must not treat it as
@@ -848,12 +864,13 @@ public class ManifestJobFactory(
                         // likely a second fix layered on top, whose own backup holds our version — and
                         // restoring would throw that away. Both hashes null is an old record, and
                         // FileHash.Matches reads null as "nothing to check", so those revert as before.
-                        if (File.Exists(dest)
+                        if (!force && File.Exists(dest)
                             && !FileHash.Matches(dest, entry.HashAfter)
                             && !FileHash.Matches(dest, entry.HashBefore))
                         {
                             conflicts++;
                             conflictFile ??= entry.RelativePath;
+                            conflictPaths.Add(entry.RelativePath);
                             continue;
                         }
 
@@ -871,10 +888,11 @@ public class ManifestJobFactory(
                         {
                             // This fix created the file, so deleting it is normally right — but not if
                             // someone has since replaced it. Then the file is theirs, not ours.
-                            if (!FileHash.Matches(dest, entry.HashAfter))
+                            if (!force && !FileHash.Matches(dest, entry.HashAfter))
                             {
                                 conflicts++;
                                 conflictFile ??= entry.RelativePath;
+                                conflictPaths.Add(entry.RelativePath);
                                 continue;
                             }
                             File.Delete(dest);
@@ -892,7 +910,7 @@ public class ManifestJobFactory(
                 string conflictErr = string.Format(
                     Resources.Strings.Fixes_Revert_Conflict_Body, conflictFile, conflicts);
                 toast.Show(Resources.Strings.Fixes_Revert_Conflict, conflictErr, error: true);
-                return new JobResult(false, conflictErr);
+                return new JobResult(false, conflictErr) { RevertConflicts = conflictPaths };
             }
 
             if (errors > 0)
@@ -903,7 +921,7 @@ public class ManifestJobFactory(
                 // retryable once the game is closed. Same principle the apply path already follows: it
                 // writes the record even on partial failure so the backups stay recoverable.
                 string err = string.Format(Resources.Strings.Fixes_Revert_Partial_Body, errors);
-                toast.Show(Resources.Strings.Fixes_Revert_Partial, err, error: true);
+                ShowRevertResult(Resources.Strings.Fixes_Revert_Partial, err, recovery, error: true);
                 return new JobResult(false, err);
             }
 
@@ -915,10 +933,10 @@ public class ManifestJobFactory(
 
             // Drop it from the index last, so the index is never emptier than the truth. If this fails the
             // stale entry is pruned on the next read anyway, since its record file is now gone.
-            fixIndex.Remove(appId, fixId);
+            try { fixIndex.Remove(appId, fixId); } catch { /* the record, not the index, governs revert */ }
 
             string message = string.Format(Resources.Strings.Fixes_Revert_Done_Body, restored, deleted);
-            toast.Show(Resources.Strings.Fixes_Revert_Done, message);
+            ShowRevertResult(Resources.Strings.Fixes_Revert_Done, message, recovery);
             return new JobResult(true, message, installDir);
         }
         catch (Exception ex)
@@ -928,6 +946,17 @@ public class ManifestJobFactory(
             toast.Show(Resources.Strings.Fixes_Revert_Failed, ex.Message, error: true);
             return new JobResult(false, ex.Message);
         }
+    }
+
+    private void ShowRevertResult(string title, string message, FixRevertRecovery? recovery, bool error = false)
+    {
+        if (recovery is null) { toast.Show(title, message, error); return; }
+        try { recovery.SetStatus(error ? "partial" : "completed"); } catch { /* recovery copies stay */ }
+        string body = message + Environment.NewLine +
+            string.Format(Resources.Strings.Fixes_ForceRevert_RecoverySaved, recovery.DirectoryPath);
+        toast.ShowAction(title, body, Resources.Strings.Common_ShowInFolder,
+            () => System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(recovery.DirectoryPath)
+                { UseShellExecute = true }), error);
     }
 
     // ── Helpers ──────────────────────────────────────────────────────

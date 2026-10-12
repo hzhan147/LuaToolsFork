@@ -624,4 +624,8 @@
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>Το {0} έχει αλλάξει από τότε που εφαρμόστηκε αυτή η διόρθωση, οπότε η επαναφορά θα αντικαταστήσει αυτές τις αλλαγές. Αν εφαρμόσατε άλλη διόρθωση από πάνω, επαναφέρετε πρώτα εκείνη. Επηρεάζονται {1} αρχεία.</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>Η διόρθωση αναιρέθηκε μερικώς</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>Δεν ήταν δυνατή η επαναφορά {0} αρχείων. Κλείστε το παιχνίδι και δοκιμάστε ξανά.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Αποθηκεύστε αντίγραφα ανάκτησης, έπειτα επαναφέρετε τα πρωτότυπα και αφαιρέστε τα αρχεία που πρόσθεσε αυτή η διόρθωση. Τα αντίγραφα παραμένουν μέχρι να τα διαγράψετε.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Δημιουργία αντιγράφων και αναγκαστική αναίρεση</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Τα αντίγραφα ανάκτησης αποθηκεύτηκαν στο {0}. Διαγράψτε τα χειροκίνητα όταν δεν χρειάζονται πλέον.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>Η δημιουργία αντιγράφων ανάκτησης απέτυχε. Δεν έγινε αναίρεση αρχείων. {0}</value></data>
 </root>

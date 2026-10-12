@@ -624,4 +624,8 @@ Peruuta - jatka lataamista</value></data>
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>{0} on muuttunut tämän korjauksen käyttöönoton jälkeen, joten palauttaminen korvaisi nuo muutokset. Jos otit päälle toisen korjauksen, peru ensin se. {1} tiedosto(a) koskee.</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>Korjaus peruttu osittain</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>{0} tiedostoa ei voitu palauttaa. Sulje peli ja yritä uudelleen.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Tallenna palautuskopiot, palauta alkuperäiset tiedostot ja poista tämän korjauksen lisäämät tiedostot. Kopiot säilyvät, kunnes poistat ne.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Varmuuskopioi ja pakota kumoaminen</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Palautuskopiot tallennettiin kansioon {0}. Poista ne käsin, kun et enää tarvitse niitä.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>Palautuskopioiden luonti epäonnistui. Yhtään tiedostoa ei palautettu. {0}</value></data>
 </root>

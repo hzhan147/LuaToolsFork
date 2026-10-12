@@ -659,4 +659,8 @@ Cancel - keep downloading</value></data>
   <data name="Depot_Err_NoKeyFor" xml:space="preserve"><value>No decryption key in Lua for depot {0}.</value></data>
   <data name="Builds_Select_SharedHint" xml:space="preserve"><value>Shared runtime — usually already installed. Tick to download anyway.</value></data>
   <data name="Downloads_ClearHistory_Confirm" xml:space="preserve"><value>Remove all {0} entries from the download history? Downloaded files are not affected.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Save recovery copies, then restore originals and remove files added by this fix. Recovery copies stay until you delete them.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Back up and force revert</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Recovery copies saved to {0}. Delete them manually when no longer needed.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>Recovery backup failed. No files were reverted. {0}</value></data>
 </root>

@@ -624,4 +624,8 @@ Zrušit - pokračovat ve stahování</value></data>
   <data name="Fixes_Revert_Conflict_Body" xml:space="preserve"><value>Soubor {0} se od použití této opravy změnil, takže obnovení by tyto změny přepsalo. Pokud jste navrch použili jinou opravu, vraťte nejprve ji. Dotčeno {1} souborů.</value></data>
   <data name="Fixes_Revert_Partial" xml:space="preserve"><value>Oprava vrácena zpět částečně</value></data>
   <data name="Fixes_Revert_Partial_Body" xml:space="preserve"><value>{0} soubor(ů) se nepodařilo obnovit. Zavřete hru a zkuste to znovu.</value></data>
+  <data name="Fixes_ForceRevert_Body" xml:space="preserve"><value>Uložte kopie pro obnovení, poté obnovte původní soubory a odstraňte soubory přidané touto opravou. Kopie zůstanou, dokud je nesmažete.</value></data>
+  <data name="Fixes_ForceRevert_Button" xml:space="preserve"><value>Zálohovat a vynutit vrácení</value></data>
+  <data name="Fixes_ForceRevert_RecoverySaved" xml:space="preserve"><value>Kopie pro obnovení byly uloženy do {0}. Až je nebudete potřebovat, ručně je smažte.</value></data>
+  <data name="Fixes_ForceRevert_BackupFailed" xml:space="preserve"><value>Zálohování pro obnovení selhalo. Žádné soubory nebyly vráceny. {0}</value></data>
 </root>
